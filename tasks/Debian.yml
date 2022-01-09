@@ -1,0 +1,13 @@
+---
+- name: Install latest mlocate and update locate database (DEB)
+  apt: >
+    upgrade=yes
+    update_cache=yes
+    cache_valid_time=3600  
+- name: Install mlocate (DEB)
+  package: name={{item}} state=latest
+  with_items:
+    - mlocate
+
+- name: Update locate database (DEB)
+  command: updatedb
